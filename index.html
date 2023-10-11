@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID Train Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="addRunSection"> <!-- Enclose the 'Add New Run' section -->
+            <!-- Add New Run -->
+            <h2>Add New Run</h2>
+            <label>Date: <input type="date" id="runDate"></label><br>
+            <label>Line: <select id="lineNumber">
+                <option value="line2">Line 2</option>
+            </select></label><br>
+            <label>Bound: <select id="bound">
+                <option value="east">East</option>
+                <option value="west">West</option>
+            </select></label><br>
+            <button onclick="startRun()">Start Run</button>
+        </div>
+        
+        <div id="tagEntrySection" style="display: none;"> <!-- This section is for entering tag measurements -->
+            <h3>Tag Entry</h3>
+            Tag ID: <span id="currentTagID"></span><br>
+            Database Position: <span id="currentTagPosition"></span><br>
+            <label>Reported Position: <input type="number" step="any" id="reportedPosition" pattern="^\d*(\.\d{0,2})?$"></label><br>
+            <button onclick="saveMeasurement()">Save Measurement & Next</button>
+            <button onclick="skipTag()">Skip</button>
+            <button onclick="saveAndExit()">Save & Exit</button>
+        </div>
+
+        <h2>Manage Runs</h2>
+        <a href="runs.html">View Existing Runs |</a>
+        <script>
+            // Check if there's a run to continue with when the page loads
+            window.onload = function() {
+                const continueRunIndex = localStorage.getItem('continueRunIndex');
+                if (continueRunIndex !== null) {
+                    // Remove the saved index from localStorage
+                    localStorage.removeItem('continueRunIndex');
+                    
+                    // Load the saved run
+                    currentRun = allRuns[Number(continueRunIndex)];
+                    currentTagIndex = currentRun.measurements.length;
+                    
+                    // Start the tag entry process immediately
+                    showTag();
+        
+                    // Hide the "Add New Run" section
+                    document.getElementById('addRunSection').style.display = 'none';
+                }
+            }
+        </script>
+        <a href="analysis.html"> Analysis Dashboard</a>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* styles.css */
+
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Header styles */
+.header {
+    background-color: #0074D9;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0074D9;
+    color: #fff;
+}
+
+/* Button styles */
+button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Problematic tags section */
+.problematic-tags {
+    margin-top: 20px;
+    background-color: #f60f0f;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.problematic-tags h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.problematic-tags p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Add more styles as needed */
