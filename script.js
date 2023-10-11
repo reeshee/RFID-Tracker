@@ -69,6 +69,13 @@ function skipTag() {
     showTag();
 }
 
+function previousTag() {
+    if (currentTagIndex > 0) {
+        currentTagIndex--;
+        showTag();
+    }
+}
+
 function saveAndExit() {
     let existingRunIndex = allRuns.findIndex(run => run.date === currentRun.date && run.line === currentRun.line && run.bound === currentRun.bound);
 
