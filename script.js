@@ -135,7 +135,7 @@ function loadRuns() {
                     measurement.databasePosition = tagData[8];
                 }
             });
-            
+
             const row = runsTableBody.insertRow();
 
             const dateCell = row.insertCell(0);
@@ -175,6 +175,14 @@ function loadRuns() {
                 }
             };
             actionsCell.appendChild(deleteButton);
+
+            // Add Download Button
+            const downloadButton = document.createElement('button');
+            downloadButton.textContent = '⬇️'; // download symbol
+            downloadButton.onclick = function() {
+                downloadRunAsCSV(index);
+            };
+            actionsCell.appendChild(downloadButton);
         });
     });
 }
@@ -206,6 +214,27 @@ function deleteRun(index) {
     }
 }
 
+function downloadRunAsCSV(index) {
+    const run = allRuns[index];
+    let csvContent = "data:text/csv;charset=utf-8,Tag ID,Reported Position\n";
+
+    fetchCSV(CSVFiles[run.line + run.bound]).then(tags => {
+        tags.forEach(tag => {
+            const measurement = run.measurements.find(measurement => measurement.tag === tag[0]);
+            const reportedPosition = measurement ? measurement.reportedPosition : '';
+            csvContent += `${tag[0]},${reportedPosition}\n`;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `${run.date}_${run.line}_${run.bound}_run.csv`);
+        document.body.appendChild(link); // Required for FF
+
+        link.click();
+        document.body.removeChild(link);
+    });
+}
 function loadAnalysis() {
     allRuns = JSON.parse(localStorage.getItem('runs')) || [];
 
